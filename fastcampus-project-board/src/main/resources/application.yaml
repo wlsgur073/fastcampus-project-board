@@ -8,9 +8,11 @@ management:
 logging:
   level:
     com.fastcampus.projectboard: debug
-    org.springframework.web.servlet: debug # request, response만 debugging
+    org.springframework.web.servlet: debug # request, response 만 debugging
     org.hibernate.type.descriptor.sql: trace # 쿼리를 로그로 관찰할 때 파라미터가 ?로 나오는 것을 볼 수 있게 설정
     org.hibernate.orm.jdbc.bind: trace
+
+
 
 spring:
   datasource:
@@ -21,21 +23,22 @@ spring:
   jpa:
     defer-datasource-initialization: true # spring boot 2.4에 출시, 테스트용 데이터베이스 데이터를 만들수 있겠금 생성을 도와줌
     hibernate.ddl-auto: create # 엔티티를 보고 자동으로 DDL문을 만들어준다.
-#    open-in-view: false
     show-sql: true # sql query 보여줄 것인지
+#    open-in-view: false
     # JPA는 기본 구현체로 hibernate를 사용하고 있다.
-    # Spring은 Hibernate의 모든 기능을 보장하진 않는다. 그래서 hibernate에서만 전용으로 사용할 수 있는 properties를 활성화시킴
+    # Spring은 Hibernate의 모든 기능을 보장하진 않는다. 그래서 hibernate 에서만 전용으로 사용할 수 있는 properties 를 활성화시킴
     properties:
-      hibernate.format_sql: true # 한 줄로 출력되는 debug query를 보기 쉽게 formmat해준다.
-      hibernate.default_batch_fetch_size: 100 # JPA에서 한 번에 bulk select해올 수 있겠금 도와줌
-  h2.console.enabled: true # h2에서 제공하는 console사용할 것인가
-  sql.init.mode: always # .sql파일을 언제 작동시킬 것인지
+      # 한 줄로 출력되는 debug query를 보기 쉽게 formmat 해준다.
+      hibernate.format_sql: true
+      hibernate.default_batch_fetch_size: 100 # JPA 에서 한 번에 bulk select 해올 수 있겠금 도와줌
+  h2.console.enabled: true # h2에서 제공하는 console 사용할 것인가
+  sql.init.mode: always # .sql 파일을 언제 작동시킬 것인지
 #  thymeleaf.cache: false
 #  data.rest:
 #      base-path: /api
 #      detection-strategy: annotated
 
-#--- # yaml은 줄 3개로 document를 여러 개 만들어낼 수 있다.
+#--- # yaml은 줄 3개로 document 를 여러 개 만들어낼 수 있다.
 
 #spring:
 #  config.activate.on-profile: testdb
