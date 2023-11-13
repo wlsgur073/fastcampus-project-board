@@ -23,9 +23,9 @@ import java.util.Set;
         , @Index(columnList = "createdAt")
         , @Index(columnList = "createdBy")
 })
-@EntityListeners(AuditingEntityListener.class)
+//@EntityListeners(AuditingEntityListener.class) -> AuditiongField.java 에 설정하게 됨
 @Entity
-public class Article {
+public class Article extends AuditiongFields{
 
     /*
     * PK를 설정하기 위해 @Id 어노테이션 사용
@@ -65,10 +65,10 @@ public class Article {
 
 
     //  JpaAuditing 이 해당 어노테이션들을 제공해준다.
-    @CreatedDate @Column(nullable = false) private LocalDateTime createdAt; // 생성일시
-    @CreatedBy @Column(nullable = false, length = 100) private String createdBy; // 생성자
-    @LastModifiedDate @Column(nullable = false) private LocalDateTime modifiedAt; // 수정일시
-    @LastModifiedBy @Column(nullable = false, length = 100) private String modifiedBy; // 수정자
+//    @CreatedDate @Column(nullable = false) private LocalDateTime createdAt; // 생성일시
+//    @CreatedBy @Column(nullable = false, length = 100) private String createdBy; // 생성자
+//    @LastModifiedDate @Column(nullable = false) private LocalDateTime modifiedAt; // 수정일시
+//    @LastModifiedBy @Column(nullable = false, length = 100) private String modifiedBy; // 수정자
 
     //  모든 JPA Entity 들은 Hibernate 구현체를 사용하는 경우를 기준으로 기본 생성자를 가지고 있어야 한다.
     //  평소에는 오픈하지 않는 것이기에 protected 사용
