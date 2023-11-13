@@ -19,9 +19,9 @@ import java.util.Objects;
         , @Index(columnList = "createdAt")
         , @Index(columnList = "createdBy")
 })
-@EntityListeners(AuditingEntityListener.class)
+//@EntityListeners(AuditingEntityListener.class)
 @Entity
-public class ArticleComment {
+public class ArticleComment extends AuditiongFields{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,13 +35,24 @@ public class ArticleComment {
     @Setter @ManyToOne(optional = false) private Article article; // 게시글 (ID)
     @Setter @Column(nullable = false, length = 500) private String content; // 본문
 
-    @CreatedDate @Column(nullable = false) private LocalDateTime createdAt; // 생성일시
-    @CreatedBy @Column(nullable = false, length = 100) private String createdBy; // 생성자
-    @LastModifiedDate @Column(nullable = false) private LocalDateTime modifiedAt; // 수정일시
-    @LastModifiedBy @Column(nullable = false, length = 100) private String modifiedBy; // 수정자
+//    @CreatedDate @Column(nullable = false) private LocalDateTime createdAt; // 생성일시
+//    @CreatedBy @Column(nullable = false, length = 100) private String createdBy; // 생성자
+//    @LastModifiedDate @Column(nullable = false) private LocalDateTime modifiedAt; // 수정일시
+//    @LastModifiedBy @Column(nullable = false, length = 100) private String modifiedBy; // 수정자
+
+    /*
+    * article 과 articleComment 에서 id 및 생성일자, 생성자, 수정일자, 수정자의 컬럼이
+    * 중복되기에 이것을 한 클래스로 묶을수도 있다.
+    * @MappedSuperclass 라는 에노테이션이나, @Embedded 라는 방식으로 접근이 가능하다.
+    * */
+    /*
+    첫 번째 방법 : @Embedded 는 해당 컬럼들을 묶는 클래스를 만들어서 거기에 추가하는 방법이다.
+    @Embedded AAA aa;
+    class AAA{중복되는 컬럼 등록}
+    */
 
 
-    // lombok으로도 class위에 @NoArgsConstructor(access = AccessLevel.PROTECTED) 설정하여 같은 동작을 수행할수도 있다.
+    // lombok 으로도 class 위에 @NoArgsConstructor(access = AccessLevel.PROTECTED) 설정하여 같은 동작을 수행할수도 있다.
     protected ArticleComment() {}
 
     private ArticleComment(Article article, String content) {
