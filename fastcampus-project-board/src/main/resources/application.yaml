@@ -26,23 +26,28 @@ spring:
 #    driver-class-name: org.h2.Driver
   jpa:
     defer-datasource-initialization: true # spring boot 2.4에 출시, 테스트용 데이터베이스 데이터를 만들수 있겠금 생성을 도와줌
-    hibernate.ddl-auto: create # 엔티티를 보고 자동으로 DDL문을 만들어준다.
+    hibernate.ddl-auto: create # 엔티티를 보고 자동으로 DDL 문을 만들어준다.
     show-sql: true # sql query 보여줄 것인지
 #    open-in-view: false
-    # JPA는 기본 구현체로 hibernate를 사용하고 있다.
-    # Spring은 Hibernate의 모든 기능을 보장하진 않는다. 그래서 hibernate 에서만 전용으로 사용할 수 있는 properties 를 활성화시킴
+    # JPA 는 기본 구현체로 hibernate 를 사용하고 있다.
+    # Spring 은 Hibernate 의 모든 기능을 보장하진 않는다. 그래서 hibernate 에서만 전용으로 사용할 수 있는 properties 를 활성화시킴
     properties:
-      # 한 줄로 출력되는 debug query를 보기 쉽게 formmat 해준다.
+      # 한 줄로 출력되는 debug query 를 보기 쉽게 format 해준다.
       hibernate.format_sql: true
       hibernate.default_batch_fetch_size: 100 # JPA 에서 한 번에 bulk select 해올 수 있겠금 도와줌
   sql.init.mode: always # .sql 파일을 언제 작동시킬 것인지
+  data.rest:
+      base-path: /api
+#     기본 값 default // repository 를 실제로 REST API 로 노출시킬 건지 전략을 설정
+#     annotated 는  에노테이션을 지정한 것들만 api 에 노출시킨다.
+      detection-strategy: annotated
 #  h2.console.enabled: true # h2에서 제공하는 console 사용할 것인가
 #  thymeleaf.cache: false
 #  data.rest:
 #      base-path: /api
 #      detection-strategy: annotated
 
-#--- # yaml은 줄 3개로 document 를 여러 개 만들어낼 수 있다.
+#--- # yaml 은 줄 3개로 document 를 여러 개 만들어낼 수 있다.
 
 #spring:
 #  config.activate.on-profile: testdb
@@ -50,8 +55,8 @@ spring:
 #    url: jdbc:h2:mem:board;mode=mysql
 #    driver-class-name: org.h2.Driver
 #  sql.init.mode: always
-#  #  Test class위에 @AutoConfigureTestDatabase이라는 어노테이션을 설정해서 특정 DB를 바라보게 할 수 있다.
+#  #  Test class 위에 @AutoConfigureTestDatabase 이라는 어노테이션을 설정해서 특정 DB를 바라보게 할 수 있다.
 #  #  @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-#  #  다만, 장황하게 보일 수 있어서 yaml으로 설정 가능하다.
+#  #  다만, 장황하게 보일 수 있어서 yaml 으로 설정 가능하다.
 #  test.database.replace: none
 
